@@ -4,3 +4,8 @@ Zac (10:12am)
 	-started making class file templates
 	-started adding functions to class files
 	-added a project log to folder
+
+Ryan (03:00pm)
+	-pull from master
+	-reviewing Zac's code
+	-messing around with inputs
