@@ -9,3 +9,6 @@ Ryan (03:00pm)
 	-pull from master
 	-reviewing Zac's code
 	-messing around with inputs
+
+Ryan (10:43pm)
+	-cloning git repository to desktop
