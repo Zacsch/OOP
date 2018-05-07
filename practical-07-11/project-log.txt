@@ -14,3 +14,14 @@ Ryan (10:43pm)
 	-cloning git repository to desktop
 	-testing git branch
 	-think I'm all good now
+
+Monday 7th May 2018
+-----------------------
+Zac (10:58am)
+	-started making the functions in player.cpp (very rough version)
+	-made cpp file for human player
+	-made code check file to avoid overwriting current code if it is crap
+
+Zac (3:09pm)
+	-done some crappy testing
+	-tried working on other functions

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "player.h"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ class human_player: public player
 {
 	public:
 		human_player();
-		void action(); //determine the action taken by player
+		int action(); //determine the action taken by player and return numbe rof next player
 		~human_player();
 };
 
