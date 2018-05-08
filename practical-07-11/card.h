@@ -8,11 +8,14 @@ using namespace std;
 
 class card
 {
-	public:
-		card();
-		string suit(); //designate a suit to each card
-		int value(); //designate a value to each card
-		~card();
+private:
+	string suit(); //card suit
+	int value(); //card value
+public:
+	card();
+	void suit(ins_suit); //designate a suit to card
+	void value(ins_value); //designate a value to card
+	~card();
 };
 
 #endif
