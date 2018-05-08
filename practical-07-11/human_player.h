@@ -11,7 +11,7 @@ class human_player: public player
 {
 	public:
 		human_player();
-		int action(); //determine the action taken by player and return numbe rof next player
+		int action(); //determine the action taken by player and return number of next player
 		~human_player();
 };
 
