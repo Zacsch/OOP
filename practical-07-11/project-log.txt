@@ -31,3 +31,6 @@ Tuesday 8th May 2018
 Ryan (9:25pm)
 	-reviewing work that Zac's done
 	-moved player.h into the practical-07-11 directory (was missing before)
+	-made a few changes to header files (added some constants as private in class)
+
+	
