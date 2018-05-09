@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+#include "card.h"
+
+using namespace std;
+
+//default constructor
+card::card() {
+  suit = 0;
+  type = 0;
+  value = 0;
+}
+
+//constructor setup card suit, type and value
+card::card(int ins_suit, int ins_number) {
+  suit = ins_suit;
+  number = ins_type;
+  switch (number) {
+    case 1:
+      value = 11;
+      type = "A";
+      break;
+    case 11:
+      value = 10;
+      type = "J";
+      break;
+    case 12;
+      value = 10;
+      type = "Q";
+      break;
+    case 13;
+      value = 10;
+      type = "K";
+      break;
+    default:
+      value = number;
+      type = to_string(number);
+  }
+}
