@@ -10,7 +10,8 @@ class hand
 {
 	public:
 		hand();
-		
+		void add(card cardToAdd); //add the card to the hand
+		int score(); //obtain the score of the hand
 		~hand();
 };
 

@@ -17,10 +17,6 @@ public:
 	card();
 	card(int suit, int number); //card constructor
 
-	void suit(string ins_suit); //designate a suit to card
-	void type(int ins_type); //designate card type (Ace, 2-10, J, Q, K)
-	void value(int ins_value); //designate a value to card
-
 	int get_number();
 	int get_value();
 	string get_suit();
