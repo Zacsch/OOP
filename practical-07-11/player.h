@@ -10,7 +10,7 @@ using namespace std;
 class player: public player_setup
 {
 	public:
-		player();
+		player(int numberOfThePlayer, string nameOfPlayer);
 		bool bust(int score); //check to see if player has gone bust
 		bool winner_winner_chicken_dinner(int score); //check to see if player has blackjack with initial hand
 		int dealer_swap(); //changes the dealer
@@ -19,6 +19,11 @@ class player: public player_setup
 		void show(); //show the results of the game
 
 		void winner(int bestScore, int numberOfPlayers);
+
+		virtual int action(int dealer)=0;
+
+		int playerNumber;
+		string playerName;
 
 		~player();
 };

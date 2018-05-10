@@ -5,31 +5,39 @@
 
 using namespace std;
 
-human_player::human_player()
+human_player::human_player(int numberOfThePlayer,string nameOfPlayer):player(numberOfThePlayer,nameOfPlayer)
 {
 
 }
 
-int human_player::action() //determine the action that is taken by the person
+void human_player::action(int dealer) //determine the action that is taken by the person
 {
-	cout << "press enter to hit or space to sit" << endl;
+	string input;
 
-	char input=getchar();
-	
-	if (input==' ')
+	while true //run until an end of turn condition
 	{
-		int player=human_player::sit(/*numberOfPlayers*/,/*dealer*/); 
-	}
-	else if (input=='')
-	{
-		human_player::hit_me(/*playerNumber*/);
-	}
-	else
-	{
-		cout << "that is not a valid option!" << endl;
-	}
-	
-	return player;
+		if (score>21)
+		{
+			bust(int score); //display bust message
+			break; //end turn
+		}
+
+		cout << "press h for hit or s for sit and hit enter" << endl;
+		cin >> input;
+
+		if (input=='s')
+		{
+			player::sit(numberOfPlayers,dealer); //perform actions following a person sitting
+			break; //end turn
+		}
+		else if (input=='h')
+		{
+			score=player::hit_me();
+		}
+		else
+		{
+			cout << "that is not a valid option!" << endl;
+		}
 }
 
 human_player::~human_player()
