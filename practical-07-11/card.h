@@ -13,15 +13,18 @@ private:
 	int number; //card number associated with type
 	int value; //card value
 	string type; //card type
+	string suit_name;
 public:
 	card();
-	card(int suit, int number); //card constructor
+	void set_card(int suit, int number); //card constructor
 
 	int get_number();
 	int get_value();
-	string get_suit();
+	int get_suit();
+	string get_type();
+	string get_suit_name();
 
-	~card();
+	//~card();
 };
 
 #endif

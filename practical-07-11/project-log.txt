@@ -33,4 +33,8 @@ Ryan (9:25pm)
 	-moved player.h into the practical-07-11 directory (was missing before)
 	-made a few changes to header files (added some constants as private in class)
 
-	
+Wednesday 9th May 2018
+-----------------------
+Ryan (10:00am)
+	-worked on deck and card
+	-got function working to build deck

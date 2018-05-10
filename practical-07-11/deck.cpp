@@ -1,42 +1,34 @@
 #include <iostream>
 #include <string>
 #include "card.h"
-#include "deck.h"
 #include "stdio.h"
 #include "stdlib.h"
 
 using namespace std;
 
-deck::deck(int numberOfDecks)
-{
-  for (int i=0; i<(52*numberOfDecks);i++)
-  {
-    *(dock+i)=0;
-  }
-}
-
-void deck::build(int numberOfDecks)
-{
-  for (int i=0;i<numberOfDecks;i++)
-  {
-    for (int j=0;j<52;j++)
-    {
-      dock[j] = card[j];
+//function to build deck of card objects, input number of decks, returns pointer to deck
+card* build_deck(int numberOfDecks) {
+  card *deck = new card[52 * numberOfDecks];
+  for (int i = 0; i < numberOfDecks; i++) { //number of decks
+    for (int j = 0; j < 4; j++) { //number of suits per deck
+      for (int k = 0; k < 13; k++) { //number of cards per suit
+          deck[52*i + 13*j + k].set_card(j+1, k+1);
+      }
     }
   }
+  return deck;
 }
 
-card deck::draw()
-{
-  int value;
-  card *result;
-  srand(time(NULL));
-  do
-  {
-    int cardNumber=rand()%52;
-    *result=dock[cardNumber];
-    value=result->get_value();
-  } while(value==0);
+//function that returns a random card, and removes it from deck
+void get_random_card() {
 
-  return *result;
+}
+
+//main function (used for testing)
+int main() {
+  int numberOfDecks = 1;
+  card* deck = build_deck(numberOfDecks);
+  for (int i = 0; i < 52 * numberOfDecks; i++) {
+    cout << deck[i].get_suit_name() << ": " << deck[i].get_type() << endl;
+  }
 }
