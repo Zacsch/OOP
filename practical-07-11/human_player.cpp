@@ -7,12 +7,13 @@ using namespace std;
 
 human_player::human_player(int numberOfThePlayer,string nameOfPlayer):player(numberOfThePlayer,nameOfPlayer)
 {
-
+	playerType=0;
 }
 
-void human_player::action(int dealer) //determine the action that is taken by the person
+int human_player::action(int playerNumber,int handSize,card* hand,string playerName,int dealer) //determine the action that is taken by the person
 {
 	string input;
+	int score=player::score(hand,handSize);
 
 	while true //run until an end of turn condition
 	{
@@ -27,12 +28,13 @@ void human_player::action(int dealer) //determine the action that is taken by th
 
 		if (input=='s')
 		{
-			player::sit(numberOfPlayers,dealer); //perform actions following a person sitting
+			player::sit(string playerName); //perform actions following a person sitting
 			break; //end turn
 		}
 		else if (input=='h')
 		{
-			score=player::hit_me();
+			player::hit_me();
+			score=player::score(hand,handSize);
 		}
 		else
 		{

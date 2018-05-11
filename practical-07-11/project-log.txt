@@ -41,3 +41,9 @@ Ryan (10:00am)
 
 Zac (10:00am)
 	-did stuff (forgot was it was)
+
+Friday 11th May 2018
+-----------------------
+Zac (2:53pm)
+	-made game_control.cpp and added functions to control setup and round end
+	-played around with hand, computer player and player to try and make things work
