@@ -3,6 +3,7 @@
 #include "card.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "time.h"
 
 using namespace std;
 
@@ -20,8 +21,8 @@ card* build_deck(int numberOfDecks) {
 }
 
 //function that returns a random card, and removes it from deck
-void get_random_card() {
-
+card get_random_card() {
+  srand(time(NULL));
 }
 
 //main function (used for testing)

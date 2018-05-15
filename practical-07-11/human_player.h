@@ -10,8 +10,7 @@ using namespace std;
 class human_player: public player
 {
 	public:
-		human_player();
-		int action(); //determine the action taken by player and return number of next player
+		human_player(int numberOfThePlayer, string nameOfPlayer);
 		~human_player();
 };
 
