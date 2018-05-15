@@ -28,7 +28,7 @@ void get_random_card() {
 int main() {
   int numberOfDecks = 1;
   card* deck = build_deck(numberOfDecks);
-  for (int i = 0; i < 52 * numberOfDecks; i++) {
+  for (int i = 0; i < 52*numberOfDecks; i++) {
     cout << deck[i].get_suit_name() << ": " << deck[i].get_type() << endl;
   }
 }
