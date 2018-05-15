@@ -6,23 +6,39 @@
 
 using namespace std;
 
-player::player(int numberOfThePlayer, string nameOfPlayer)
+//extern card get_random_card(int numberOfDecks, card* deck);
+
+player::player()
+{
+
+}
+
+player::player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck)
 {
   playerName=nameOfPlayer;
   playerNumber=numberOfThePlayer;
   card *hand=new card[12];
   for (int i=0;i<2;i++)
   {
-    hand[i]=get_random_card();
+    hand[i]=get_random_card(numberOfDecks,deck);
   }
   handSize=2;
 }
 
-int player::hit_me()
+bool player::player_type(bool playerType)
 {
-  hand[handSize-1]=get_random_card();
+  return playerType;
+}
+
+int player::player_number()
+{
+  return playerNumber;
+}
+
+void player::hit_me(int numberOfDecks, card* deck, card* hand)
+{
+  hand[handSize-1]=get_random_card(numberOfDecks, deck);
   handSize++;
-  return handSize;
 }
 
 void player::sit()
@@ -36,13 +52,19 @@ int player::dealer_swap(int dealer)
   return dealer;
 }
 
-int player::score()
+int player::score(card* hand)
 {
   int score=0;
   for (int i=0;i<handSize;i++)
   {
-    score+=hand[i]->get_value();
+    score+=hand[i].get_value();
   }
+  return score;
+}
+
+void player::bust(int score, string playerName)
+{
+  cout << playerName << "has gone bust" << endl;
 }
 
 player::~player()

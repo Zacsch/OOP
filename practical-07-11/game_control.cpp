@@ -125,15 +125,3 @@ int end_of_round_decision()
   } while(!decision);
   return decision;
 }
-
-int main() //code snippet for testing code
-{
-  int numberOfPlayers=set_number_of_players();
-  string *playerNames=new string[numberOfPlayers];
-  for (int i=0;i<numberOfPlayers;i++)
-  {
-    playerNames[i]=set_player_name(i+1);
-    cout << "Player " << i+1 << " is " << playerNames[i] << endl;
-  }
-
-}

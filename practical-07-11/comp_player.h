@@ -10,8 +10,9 @@ using namespace std;
 class comp_player: public player
 {
 	public:
-		comp_player(int numberOfThePlayer, string nameOfPlayer);
-		int action(int dealer);
+		comp_player();
+		comp_player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck);
+		virtual int action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand);
 		~comp_player();
 };
 

@@ -4,26 +4,39 @@
 
 using namespace std;
 
-comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer):player(numberOfThePlayer,nameOfPlayer)
+comp_player::comp_player()
+{
+
+}
+
+comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck):player(numberOfThePlayer,nameOfPlayer,numberOfDecks,deck)
 {
   playerType=1;
 }
 
-int comp_player::action(int dealer)
+int comp_player::action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand)
 {
-  int score = score();
+  comp_player *currentCompPlayer;
+  currentCompPlayer=new comp_player();
+  int score = currentCompPlayer->score(hand);
   while (score<17)
   {
-    players[playerNumber]->hit_me();
+    currentCompPlayer->hit_me(numberOfDecks, deck, hand);
     handSize++;
-    score = players[playerNumber]->score();
+    score = currentCompPlayer->score(hand);
   }
   if (score>21)
   {
-    players[playerNumber]->bust(score);
+    currentCompPlayer->bust(score,playerName);
   }
   else
   {
-    players[playerNumber]->sit();
+    currentCompPlayer->sit();
   }
+  delete currentCompPlayer;
+}
+
+comp_player::~comp_player()
+{
+
 }

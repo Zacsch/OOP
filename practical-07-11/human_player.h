@@ -10,7 +10,9 @@ using namespace std;
 class human_player: public player
 {
 	public:
-		human_player(int numberOfThePlayer, string nameOfPlayer);
+		human_player();
+		human_player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck);
+		virtual int action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand);
 		~human_player();
 };
 

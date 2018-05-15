@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include "deck.h"
 #include "card.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -21,15 +23,9 @@ card* build_deck(int numberOfDecks) {
 }
 
 //function that returns a random card, and removes it from deck
-card get_random_card() {
+card get_random_card(int numberOfDecks, card* deck) {
   srand(time(NULL));
-}
-
-//main function (used for testing)
-int main() {
-  int numberOfDecks = 1;
-  card* deck = build_deck(numberOfDecks);
-  for (int i = 0; i < 52 * numberOfDecks; i++) {
-    cout << deck[i].get_suit_name() << ": " << deck[i].get_type() << endl;
-  }
+  int cardNumber=rand()%(52*numberOfDecks);
+  card card=deck[cardNumber];
+  return card;
 }
