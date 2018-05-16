@@ -17,7 +17,7 @@ player::player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, ca
 {
   playerName=nameOfPlayer;
   playerNumber=numberOfThePlayer;
-  card *hand=new card[12];
+  hand=new card[12];
   for (int i=0;i<2;i++)
   {
     hand[i]=get_random_card(numberOfDecks,deck);
@@ -37,8 +37,7 @@ int player::player_number()
 
 void player::hit_me(int numberOfDecks, card* deck, card* hand)
 {
-  hand[handSize-1]=get_random_card(numberOfDecks, deck);
-  handSize++;
+  hand[handSize]=get_random_card(numberOfDecks, deck);
 }
 
 void player::sit()
@@ -52,7 +51,7 @@ int player::dealer_swap(int dealer)
   return dealer;
 }
 
-int player::score(card* hand)
+int player::score()
 {
   int score=0;
   for (int i=0;i<handSize;i++)
@@ -62,9 +61,45 @@ int player::score(card* hand)
   return score;
 }
 
-void player::bust(int score, string playerName)
+void player::bust(string playerName)
 {
-  cout << playerName << "has gone bust" << endl;
+  cout << playerName << " has gone bust" << endl;
+}
+
+bool player::winner_winner_chicken_dinner()
+{
+  bool win=0;
+  int handScore=score();
+  if (handScore==21)
+  {
+    cout << "Winner Winner Chicken Dinnner!" << endl;
+    cout << playerName << " has 21" << endl;
+    win=1;
+  }
+  return win;
+}
+
+void player::show()
+{
+  cout << "|";
+  for (int i=0;i<handSize;i++)
+  {
+    cout << hand[i].get_suit_name() << hand[i].get_type() << "|";
+  }
+  cout << " - " << score() << endl;
+}
+
+void player::reset_hand(int numberOfDecks, card* deck)
+{
+  for (int i=0;i<2;i++)
+  {
+    hand[i]=get_random_card(numberOfDecks,deck);
+  }
+  for (int i=2;i<handSize;i++)
+  {
+    hand[i].set_blank();
+  }
+  handSize=2;
 }
 
 player::~player()

@@ -31,11 +31,11 @@ int set_number_of_players()
   return numberOfPlayers;
 }
 
-int set_number_of_decks()
+int set_number_of_decks(int numberOfPlayers)
 {
   int numberOfDecks;
   bool incorrectNumberOfDecks; //used to see if there is a valid number of decks
-  cout << "Enter the number of decks" << endl;
+  cout << "Enter the number of decks (min. of " << 1+numberOfPlayers/4 << " decks for " << numberOfPlayers << " players)" << endl;
   do
   {
     cin >> numberOfDecks;
@@ -45,13 +45,13 @@ int set_number_of_decks()
       cin.clear(); //clear the stream
       cin.ignore(); //clear the buffer
       cout << "That is not a proper number. Please enter a number" << endl;
-      numberOfDecks=10000; //arbitrary value to stop next condition from occurring
+      numberOfDecks=10000000; //arbitrary value to stop next condition from occurring
     }
-    if(numberOfDecks<1)
+    if(numberOfDecks<(1+numberOfPlayers/4))
     {
       cin.clear(); //clear the stream
       cin.ignore(); //clear the buffer
-      cout << "There must at least be a deck. Please enter a proper amount of decks" << endl;
+      cout << "That is too few decks. Please enter a suitable number of decks (min. of " << numberOfPlayers/4 << " decks)" << endl;
       incorrectNumberOfDecks=1; //set condition to continue running the loop until a suitable number of decks is entered
     }
   } while(incorrectNumberOfDecks);

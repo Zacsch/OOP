@@ -14,21 +14,22 @@ class player
 	public:
 		player();
 		player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck);
-		void bust(int score, string playerName); //check to see if player has gone bust
-		bool winner_winner_chicken_dinner(int score); //check to see if player has blackjack with initial hand
+		void bust(string playerName); //check to see if player has gone bust
+		bool winner_winner_chicken_dinner(); //check to see if player has blackjack with initial hand
 		int dealer_swap(int dealer); //changes the dealer
 		void hit_me(int numberOfDecks, card* deck, card* hand); //take a card from the deck
 		void sit(); //finish turn and go to next player
 		void show(); //show the results of the game
 		void winner(int dealer); //determine and show the winner
-		int score(card* hand); //returns the value of the hand
+		int score(); //returns the value of the hand
 		bool player_type(bool playerType); //return player type
 		int player_number(); //return the player number
+		void reset_hand(int numberOfDecks, card* deck); //reset the hand
 
 
-		void winner(int bestScore, int numberOfPlayers);
+		int winner();
 
-		virtual int action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand)=0;
+		virtual int action(int numberOfDecks, card* deck)=0;
 
 		int playerNumber;
 		string playerName;

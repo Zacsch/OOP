@@ -14,26 +14,23 @@ comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer, int numberO
   playerType=1;
 }
 
-int comp_player::action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand)
+int comp_player::action(int numberOfDecks, card* deck)
 {
-  comp_player *currentCompPlayer;
-  currentCompPlayer=new comp_player();
-  int score = currentCompPlayer->score(hand);
-  while (score<17)
+  int handScore = score();
+  while (handScore<17)
   {
-    currentCompPlayer->hit_me(numberOfDecks, deck, hand);
+    hit_me(numberOfDecks, deck, hand);
     handSize++;
-    score = currentCompPlayer->score(hand);
+    handScore = score();
   }
-  if (score>21)
+  if (handScore>21)
   {
-    currentCompPlayer->bust(score,playerName);
+    bust(playerName);
   }
   else
   {
-    currentCompPlayer->sit();
+    sit();
   }
-  delete currentCompPlayer;
 }
 
 comp_player::~comp_player()

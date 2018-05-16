@@ -12,7 +12,7 @@ class human_player: public player
 	public:
 		human_player();
 		human_player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck);
-		virtual int action(int currentPlayer, string playerName, int numberOfDecks, card* deck, card* hand);
+		virtual int action(int numberOfDecks, card* deck);
 		~human_player();
 };
 

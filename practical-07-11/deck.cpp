@@ -44,7 +44,7 @@ card get_random_card(int numberOfDecks, card* deck)
   return getCard;
 }
 
-int main()
+/*int main()
 {
     card* deck = build_deck(1);
     card handCard;
@@ -59,4 +59,4 @@ int main()
         cout << deck[i].get_suit_name() << deck[i].get_type() << ": ";
     }
     return 0;
-}
+}*/
