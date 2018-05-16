@@ -18,6 +18,8 @@ public:
 	card();
 	void set_card(int suit, int number); //card constructor
 
+	void set_blank(); //set blank cards
+	
 	int get_number();
 	int get_value();
 	int get_suit();

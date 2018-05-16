@@ -52,4 +52,8 @@ Wednesday 16th May 2018
 -----------------------
 Zac (5:00pm)
 	-Done a lot of stuff
-	
+
+Ryan (11:00am)
+	-Completed function to get random card from deck (in deck.cpp)
+	-Tested random card generator and appears to work
+	-Teseted the get_random_card function and working as desired

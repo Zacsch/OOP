@@ -52,6 +52,14 @@ void card::set_card(int ins_suit, int ins_number) {
   }
 }
 
+void card::set_blank() {
+    number = 0;
+    suit = 0;
+    value = 0;
+    type = "0";
+    suit_name = "0";
+}
+
 int card::get_number() {
   return number;
 }
