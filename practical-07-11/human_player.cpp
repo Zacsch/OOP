@@ -50,6 +50,9 @@ int human_player::action(int numberOfDecks, card* deck) //determine the action t
 			cout << "that is not a valid option!" << endl;
 		}
 	}
+	string endTurn;
+  cout << "type something and press enter to continue" << endl;
+  cin >> endTurn;
 	return cardsDrawn;
 }
 

@@ -33,6 +33,9 @@ int comp_player::action(int numberOfDecks, card* deck)
   {
     sit();
   }
+  string endTurn;
+  cout << "type something and press enter to continue" << endl;
+  cin >> endTurn;
   return cardsDrawn;
 }
 

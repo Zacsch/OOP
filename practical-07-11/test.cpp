@@ -155,53 +155,7 @@ int main() //code snippet for testing code
         compPlayerTurn++;
       }
     }
-    cout << humanPlayerTurn << compPlayerTurn <<endl;
-    int numberOfWinners=0;
-    humanPlayerTurn=0;
-    compPlayerTurn=0;
-    string winnerNames[numberOfPlayers]={};
-    for (int i=0;i<numberOfPlayers;i++)
-    {
-      int handScore;
-      if(playerType[i])
-      {
-        handScore=humanPlayers[humanPlayerTurn]->score();
-        if (handScore==bestScore)
-        {
-          bestScore=handScore;
-          winnerNames[numberOfWinners]=playerNames[i];
-          numberOfWinners++;
-        }
-        humanPlayerTurn++;
-      }
-      else
-      {
-        handScore=compPlayers[compPlayerTurn]->score();
-        if (handScore==bestScore)
-        {
-          bestScore=handScore;
-          winnerNames[numberOfWinners]=playerNames[i];
-          numberOfWinners++;
-        }
-        compPlayerTurn++;
-      }
-    }
-    if (numberOfWinners==0)
-    {
-      cout << "No one wins" << endl;
-    }
-    else if (numberOfWinners==1)
-    {
-      cout << winnerNames[0] << " has won" << endl;
-    }
-    else
-    {
-      cout << "There is a draw between:" << endl;
-      for (int i=0;i<numberOfWinners;i++)
-      {
-        cout << winnerNames[i] << endl;
-      }
-    }
+    winner(bestScore, humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
     int choice=end_of_round_decision();
     if (choice==3)
     {
