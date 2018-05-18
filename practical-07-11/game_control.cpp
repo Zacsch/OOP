@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <term.h>
 
 using namespace std;
 
@@ -124,4 +126,16 @@ int end_of_round_decision()
     }
   } while(!decision);
   return decision;
+}
+
+void clear_terminal() //bit of code taken from cplusplus.com and modified for particular code
+{
+  if (!cur_term)
+  {
+    int result;
+    setupterm( NULL, STDOUT_FILENO, &result );
+    if (result <= 0) ;
+  }
+
+  putp( tigetstr( "clear" ) );
 }

@@ -16,7 +16,6 @@ class player
 		player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck);
 		void bust(string playerName); //check to see if player has gone bust
 		bool winner_winner_chicken_dinner(); //check to see if player has blackjack with initial hand
-		int dealer_swap(int dealer); //changes the dealer
 		void hit_me(int numberOfDecks, card* deck, card* hand); //take a card from the deck
 		void sit(); //finish turn and go to next player
 		void show(); //show the results of the game

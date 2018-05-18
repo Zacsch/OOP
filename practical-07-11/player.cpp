@@ -45,18 +45,24 @@ void player::sit()
   cout << playerName << " has decided to sit" << endl;
 }
 
-int player::dealer_swap(int dealer)
-{
-  dealer++;
-  return dealer;
-}
-
 int player::score()
 {
   int score=0;
-  for (int i=0;i<handSize;i++)
+  int numberOfAces=0;
+  for (int i=0;i<handSize;i++) //get score without modifying tthe score of an ace
   {
     score+=hand[i].get_value();
+    if (hand[i].get_value()==11) //is the current card an ace
+    {
+      numberOfAces++; //increase anytime there is an ace
+    }
+  }
+  for (int i=0; i<numberOfAces; i++)
+  {
+    if (score>21)
+    {
+      score-=10;
+    }
   }
   return score;
 }

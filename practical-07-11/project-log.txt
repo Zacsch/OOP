@@ -57,3 +57,11 @@ Ryan (11:00am)
 	-Completed function to get random card from deck (in deck.cpp)
 	-Tested random card generator and appears to work
 	-Teseted the get_random_card function and working as desired
+
+Friday 18th May 2018
+-----------------------
+Zac (12:30pm)
+	-NOTE- the code must be compiled now with -lncurses added
+	-fixed up the bugs
+	-screen clears at the start, at the start of each players turn and after all players have gone
+	-modified the score function to reduce hand score by 10 when there is an ace in the hand and the player would bust otherwise

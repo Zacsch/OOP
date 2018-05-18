@@ -17,6 +17,7 @@ human_player::human_player(int numberOfThePlayer, string nameOfPlayer, int numbe
 
 int human_player::action(int numberOfDecks, card* deck) //determine the action that is taken by the person
 {
+	int cardsDrawn=0;
 	string input;
 	int handScore=score();
 
@@ -41,6 +42,7 @@ int human_player::action(int numberOfDecks, card* deck) //determine the action t
 		{
 			hit_me(numberOfDecks, deck, hand);
 	    handSize++;
+			cardsDrawn++;
 	    handScore = score();
 		}
 		else
@@ -48,6 +50,7 @@ int human_player::action(int numberOfDecks, card* deck) //determine the action t
 			cout << "that is not a valid option!" << endl;
 		}
 	}
+	return cardsDrawn;
 }
 
 human_player::~human_player()

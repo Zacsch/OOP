@@ -16,11 +16,13 @@ comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer, int numberO
 
 int comp_player::action(int numberOfDecks, card* deck)
 {
+  int cardsDrawn=0;
   int handScore = score();
   while (handScore<17)
   {
     hit_me(numberOfDecks, deck, hand);
     handSize++;
+    cardsDrawn++;
     handScore = score();
   }
   if (handScore>21)
@@ -31,6 +33,7 @@ int comp_player::action(int numberOfDecks, card* deck)
   {
     sit();
   }
+  return cardsDrawn;
 }
 
 comp_player::~comp_player()
