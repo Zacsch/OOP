@@ -24,7 +24,7 @@ int set_number_of_players()
       cout << "That is not a proper number. Please enter a number" << endl;
       numberOfPlayers=10000; //arbitrary value to stop next condition from occurring
     }
-    if(numberOfPlayers<1)
+    if(numberOfPlayers<2)
     {
       cin.clear(); //clear the stream
       cin.ignore(); //clear the buffer
@@ -136,47 +136,46 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   int numberOfWinners=0; //record the number of players who end up with the same top score
   int humanPlayerTurn=0;
   int compPlayerTurn=0;
-  string winnerNames[numberOfPlayers]={}; //store the names of the winners
+  string winnerNames[numberOfPlayers]={}; //to store the names of the winners
   for (int i=0;i<numberOfPlayers;i++)
   {
     int handScore; //used for collecting the score of each player
-    if(playerType[i])
+    if(playerType[i]) //true if human player, false if computer player
     {
-      handScore=humanPlayers[humanPlayerTurn]->score();
-      if (handScore==bestScore)
+      handScore=humanPlayers[humanPlayerTurn]->score(); //get score of a person's hand
+      if (handScore==bestScore) //check if the person got the best score
       {
-        bestScore=handScore;
-        winnerNames[numberOfWinners]=playerNames[i];
-        numberOfWinners++;
+        winnerNames[numberOfWinners]=playerNames[i]; //record the name of anyone with the best score
+        numberOfWinners++; //increase the number of winners as more people get the best score
       }
-      humanPlayerTurn++;
+      humanPlayerTurn++; //set to check the next human player
     }
-    else
+    else //fsame as true condition but with computer player instead
     {
       handScore=compPlayers[compPlayerTurn]->score();
       if (handScore==bestScore)
       {
-        bestScore=handScore;
         winnerNames[numberOfWinners]=playerNames[i];
         numberOfWinners++;
       }
       compPlayerTurn++;
     }
   }
-  if (numberOfWinners==0)
+  /*Outcomes*/
+  if (numberOfWinners==0) //everyone went bust
   {
     cout << "No one wins" << endl;
   }
-  else if (numberOfWinners==1)
+  else if (numberOfWinners==1) //only one person has the best score
   {
-    cout << winnerNames[0] << " has won" << endl;
+    cout << winnerNames[0] << " has won" << endl; //output the winner
   }
-  else
+  else //multiple people get the best score
   {
     cout << "There is a draw between:" << endl;
-    for (int i=0;i<numberOfWinners;i++)
+    for (int i=0;i<numberOfWinners;i++) //loop to print out each player
     {
-      cout << winnerNames[i] << endl;
+      cout << winnerNames[i] << endl; //print each name
     }
   }
 }
@@ -185,22 +184,22 @@ void end_round(human_player *humanPlayers[], comp_player *compPlayers[], string 
 {
   int humanPlayerTurn=0;
   int compPlayerTurn=0;
-  int bestScore=0;
-  for (int i=0;i<numberOfPlayers;i++)
+  int bestScore=0; //the best score obtained by anyone (defaults to 0 if everyone busts)
+  for (int i=0;i<numberOfPlayers;i++) //loop to show the results for each player (in order inputted at the start of the game)
   {
     int handScore;
-    if(playerType[i])
+    if(playerType[i]) //true if human player
     {
-      cout << playerNames[i] << "- ";
-      humanPlayers[humanPlayerTurn]->show();
-      handScore=humanPlayers[humanPlayerTurn]->score();
-      if ((handScore>bestScore)&&(handScore<=21))
+      cout << playerNames[i] << "- "; //print player name
+      humanPlayers[humanPlayerTurn]->show(); //show the hand of each person
+      handScore=humanPlayers[humanPlayerTurn]->score(); //obtain the score of the person's hand
+      if ((handScore>bestScore)&&(handScore<=21)) //has the previous best score been beaten without going bust
       {
-        bestScore=handScore;
+        bestScore=handScore; //set the best score with the best hand tested so far
       }
-      humanPlayerTurn++;
+      humanPlayerTurn++; //increment to check the next human player
     }
-    else
+    else // same as true condition but with computer player instead
     {
       cout << playerNames[i] << "- ";
       compPlayers[compPlayerTurn]->show();
@@ -212,7 +211,7 @@ void end_round(human_player *humanPlayers[], comp_player *compPlayers[], string 
       compPlayerTurn++;
     }
   }
-  winner(bestScore, humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
+  winner(bestScore, humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers); //output the winner(s)
 }
 
 void clear_terminal() //bit of code taken from cplusplus.com and modified for particular code

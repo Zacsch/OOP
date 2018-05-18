@@ -60,11 +60,11 @@ int main() //code snippet for testing code
   int compPlayerTurn=0; //set to the next computer player to have their turn
   int firstPlayer=1; //get the number that represents the first player to indicate the round is complete. This is initially player 2 (array position 1)
   int currentPlayer=1; //get the current player number, initially it is player 2
-  if (playerType[0])
+  if ((playerType[0])&&(numberOfPlayers!=2))
   {
     humanPlayerTurn++;
   }
-  else
+  else if (numberOfPlayers!=2)
   {
     compPlayerTurn++;
   }
