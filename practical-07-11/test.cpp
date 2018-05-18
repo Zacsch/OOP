@@ -6,6 +6,7 @@
 #include "card.h"
 #include "deck.h"
 #include "stdio.h"
+#include <unistd.h>
 #include "stdlib.h"
 #include "time.h"
 #include "game_control.cpp"
@@ -79,6 +80,7 @@ int main() //code snippet for testing code
         if (win)
         {
           blackjack=1;
+          sleep(2);
         }
     }
     for (int i=0;i<(numberOfPlayers-numberOfHumans);i++)
@@ -87,6 +89,7 @@ int main() //code snippet for testing code
         if (win)
         {
           blackjack=1;
+          sleep(2);
         }
     }
     do
@@ -96,30 +99,29 @@ int main() //code snippet for testing code
       {
         break;
       }
-      cout << playerNames[currentPlayer] << " it is your turn (type something then press enter)" << endl;
-      cin >> turnStart; //random variable to hold play until an input is placed
       if (playerType[currentPlayer]) //is the next player a human player?
       {
+        cout << playerNames[currentPlayer] << "- it is your turn (type something then press enter)" << endl;
+        cin >> turnStart; //random variable to hold play until an input is placed
         deckSize-=humanPlayers[humanPlayerTurn]->action(numberOfDecks, deck);
         humanPlayerTurn++;
         if (humanPlayerTurn==numberOfHumans)
         {
           humanPlayerTurn=0;
         }
-        cout << humanPlayerTurn << endl;
       }
       else //if the player is not human then the player must be computer
       {
+        cout << playerNames[currentPlayer] << "- it is your turn" << endl;
+        sleep(2);
         deckSize-=compPlayers[compPlayerTurn]->action(numberOfDecks, deck);
         compPlayerTurn++;
         if (compPlayerTurn==numberOfPlayers-numberOfHumans)
         {
           compPlayerTurn=0;
         }
-        cout << compPlayerTurn << endl;
       }
       currentPlayer++;
-      cout << currentPlayer << endl;
       if (currentPlayer==numberOfPlayers)
       {
         currentPlayer=0;
@@ -128,9 +130,9 @@ int main() //code snippet for testing code
     clear_terminal();
     end_round(humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
     int choice=end_of_round_decision();
+    clear_terminal();
     if (choice==3)
     {
-      clear_terminal();
       return 0;
     }
     else if (choice==2)

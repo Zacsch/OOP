@@ -127,19 +127,19 @@ int end_of_round_decision()
     {
       cout << "That is not a valid choice" << endl;
     }
-  } while(!decision);
+  } while(!decision); //keep running until a decision has been made
   return decision;
 }
 
 void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayers[], string playerNames[], bool playerType[], int numberOfPlayers)
 {
-  int numberOfWinners=0;
+  int numberOfWinners=0; //record the number of players who end up with the same top score
   int humanPlayerTurn=0;
   int compPlayerTurn=0;
-  string winnerNames[numberOfPlayers]={};
+  string winnerNames[numberOfPlayers]={}; //store the names of the winners
   for (int i=0;i<numberOfPlayers;i++)
   {
-    int handScore;
+    int handScore; //used for collecting the score of each player
     if(playerType[i])
     {
       handScore=humanPlayers[humanPlayerTurn]->score();

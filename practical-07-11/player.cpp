@@ -37,6 +37,7 @@ int player::player_number()
 
 void player::hit_me(int numberOfDecks, card* deck, card* hand)
 {
+  cout << "'Hit Me'" << endl;
   hand[handSize]=get_random_card(numberOfDecks, deck);
 }
 

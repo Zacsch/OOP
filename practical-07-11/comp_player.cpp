@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "comp_player.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ int comp_player::action(int numberOfDecks, card* deck)
     handSize++;
     cardsDrawn++;
     handScore = score();
+    sleep(1);
   }
   if (handScore>21)
   {
@@ -34,8 +36,7 @@ int comp_player::action(int numberOfDecks, card* deck)
     sit();
   }
   string endTurn;
-  cout << "type something and press enter to continue" << endl;
-  cin >> endTurn;
+  sleep(2);
   return cardsDrawn;
 }
 
