@@ -65,3 +65,6 @@ Zac (12:30pm)
 	-fixed up the bugs
 	-screen clears at the start, at the start of each players turn and after all players have gone
 	-modified the score function to reduce hand score by 10 when there is an ace in the hand and the player would bust otherwise
+
+Zac (2:10pm)
+	-made Makefile
