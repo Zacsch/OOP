@@ -181,6 +181,40 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   }
 }
 
+void end_round(human_player *humanPlayers[], comp_player *compPlayers[], string playerNames[], bool playerType[], int numberOfPlayers)
+{
+  int humanPlayerTurn=0;
+  int compPlayerTurn=0;
+  int bestScore=0;
+  for (int i=0;i<numberOfPlayers;i++)
+  {
+    int handScore;
+    if(playerType[i])
+    {
+      cout << playerNames[i] << "- ";
+      humanPlayers[humanPlayerTurn]->show();
+      handScore=humanPlayers[humanPlayerTurn]->score();
+      if ((handScore>bestScore)&&(handScore<=21))
+      {
+        bestScore=handScore;
+      }
+      humanPlayerTurn++;
+    }
+    else
+    {
+      cout << playerNames[i] << "- ";
+      compPlayers[compPlayerTurn]->show();
+      handScore=compPlayers[compPlayerTurn]->score();
+      if ((handScore>bestScore)&&(handScore<=21))
+      {
+        bestScore=handScore;
+      }
+      compPlayerTurn++;
+    }
+  }
+  winner(bestScore, humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
+}
+
 void clear_terminal() //bit of code taken from cplusplus.com and modified for particular code
 {
   if (!cur_term)

@@ -126,36 +126,7 @@ int main() //code snippet for testing code
       }
     } while(currentPlayer!=firstPlayer);
     clear_terminal();
-    humanPlayerTurn=0;
-    compPlayerTurn=0;
-    int bestScore=0;
-    for (int i=0;i<numberOfPlayers;i++)
-    {
-      int handScore;
-      if(playerType[i])
-      {
-        cout << playerNames[i] << "- ";
-        humanPlayers[humanPlayerTurn]->show();
-        handScore=humanPlayers[humanPlayerTurn]->score();
-        if ((handScore>bestScore)&&(handScore<=21))
-        {
-          bestScore=handScore;
-        }
-        humanPlayerTurn++;
-      }
-      else
-      {
-        cout << playerNames[i] << "- ";
-        compPlayers[compPlayerTurn]->show();
-        handScore=compPlayers[compPlayerTurn]->score();
-        if ((handScore>bestScore)&&(handScore<=21))
-        {
-          bestScore=handScore;
-        }
-        compPlayerTurn++;
-      }
-    }
-    winner(bestScore, humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
+    end_round(humanPlayers, compPlayers, playerNames, playerType, numberOfPlayers);
     int choice=end_of_round_decision();
     if (choice==3)
     {
