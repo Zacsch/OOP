@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "comp_player.h"
 #include "human_player.h"
 #include "card.h"
@@ -12,7 +13,7 @@ int set_number_of_players()
 {
   int numberOfPlayers;
   bool incorrectNumberOfPlayers; //used to see if there is a valid number of players
-  cout << "Enter the number of players (must be two or more players)" << endl;
+  cout << "Enter the number of players (must be two or more players, if a number is entered first in a combination of numbers and letters the first number will be used)" << endl;
   do
   {
     cin >> numberOfPlayers;
@@ -20,7 +21,7 @@ int set_number_of_players()
     if(incorrectNumberOfPlayers)
     {
       cin.clear(); //clear the stream
-      cin.ignore(); //clear the buffer
+      cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
       cout << "That is not a proper number. Please enter a number" << endl;
       numberOfPlayers=10000; //arbitrary value to stop next condition from occurring
     }
@@ -33,6 +34,8 @@ int set_number_of_players()
     }
   } while(incorrectNumberOfPlayers);
   cout << "There are " << numberOfPlayers << " players" << endl;
+  cin.clear(); //clear the stream
+  cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
   return numberOfPlayers;
 }
 
@@ -40,7 +43,7 @@ int set_number_of_decks(int numberOfPlayers)
 {
   int numberOfDecks;
   bool incorrectNumberOfDecks; //used to see if there is a valid number of decks
-  cout << "Enter the number of decks (min. of " << 1+numberOfPlayers/4 << " decks for " << numberOfPlayers << " players)" << endl;
+  cout << "Enter the number of decks (min. of " << 1+numberOfPlayers/4 << " decks for " << numberOfPlayers << " players, if a number is entered first in a combination of numbers and letters the first number will be used)" << endl;
   do
   {
     cin >> numberOfDecks;
@@ -48,7 +51,7 @@ int set_number_of_decks(int numberOfPlayers)
     if(incorrectNumberOfDecks)
     {
       cin.clear(); //clear the stream
-      cin.ignore(); //clear the buffer
+      cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
       cout << "That is not a proper number. Please enter a number" << endl;
       numberOfDecks=10000000; //arbitrary value to stop next condition from occurring
     }
@@ -61,6 +64,8 @@ int set_number_of_decks(int numberOfPlayers)
     }
   } while(incorrectNumberOfDecks);
   cout << "There are " << numberOfDecks << " decks" << endl;
+  cin.clear(); //clear the stream
+  cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
   return numberOfDecks;
 }
 
