@@ -1,9 +1,9 @@
 all:
-	g++ deck.cpp card.cpp player.cpp comp_player.cpp human_player.cpp test.cpp -o blackjack -lncurses
+	g++ -std=c++11 deck.cpp card.cpp player.cpp comp_player.cpp human_player.cpp main.cpp -o blackjack -lncurses
 	./blackjack
 
 compile:
-	g++ deck.cpp card.cpp player.cpp comp_player.cpp human_player.cpp test.cpp -o blackjack -lncurses
+	g++ -std=c++11 deck.cpp card.cpp player.cpp comp_player.cpp human_player.cpp main.cpp -o blackjack -lncurses
 
 install curses:
 	sudo apt-get install libncurses5-dev

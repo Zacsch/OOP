@@ -141,7 +141,7 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   int numberOfWinners=0; //record the number of players who end up with the same top score
   int humanPlayerTurn=0;
   int compPlayerTurn=0;
-  string winnerNames[numberOfPlayers]={}; //to store the names of the winners
+  string winnerNames[numberOfPlayers]; //to store the names of the winners
   for (int i=0;i<numberOfPlayers;i++)
   {
     int handScore; //used for collecting the score of each player
@@ -169,19 +169,20 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   /*Outcomes*/
   if (numberOfWinners==0) //everyone went bust
   {
-    cout << "No one wins" << endl;
+    cout << "\nNo one wins\n" << endl;
   }
   else if (numberOfWinners==1) //only one person has the best score
   {
-    cout << winnerNames[0] << " has won" << endl; //output the winner
+    cout << "\n" <<winnerNames[0] << " has won\n" << endl; //output the winner
   }
   else //multiple people get the best score
   {
-    cout << "There is a draw between:" << endl;
+    cout << "There is a draw between:\n";
     for (int i=0;i<numberOfWinners;i++) //loop to print out each player
     {
       cout << winnerNames[i] << endl; //print each name
     }
+    cout << endl << endl;
   }
 }
 
