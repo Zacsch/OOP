@@ -1,3 +1,12 @@
+#include <iostream>
+#include <string>
+#include "comp_player.h"
+#include "human_player.h"
+#include "card.h"
+#include "deck.h"
+
+using namespace std;
+
 int main()
 {
   card *deck=build_deck(numberOfDecks); //create a deck based on the number of decks selected
@@ -10,4 +19,23 @@ int main()
       numberOfHumans++; //increase the number of human players
     }
   }
+  human_player **humanPlayers=new human_player*[numberOfHumans]; //initialise class array for all human players
+  int currentHumanToSet=0; //used to determine which human object needs to be set next
+  comp_player **compPlayers=new comp_player*[numberOfPlayers-numberOfHumans]; //initialise class array for all computer players
+  int currentCompToSet=0; //same as the other variable baove but for the computer player
+  for (int i=0;i<numberOfPlayers;i++) //for loop to create all the player objects
+  {
+    if (playerType[i]) //shows true if the player type is human_player
+    {
+      humanPlayers[currentHumanToSet]=new human_player(i,playerNames[i],numberOfDecks,deck); //create a human player object and store into class array
+      currentHumanToSet++; //increment to move onto next position to create a human player object
+    }
+    else //show false for a computer player, same as for true but with computer players instead
+    {
+      compPlayers[currentCompToSet]=new comp_player(i,playerNames[i],numberOfDecks,deck);
+      currentCompToSet++;
+    }
+  }
+  deckSize-=2*numberOfPlayers;
+  return 0;
 }
