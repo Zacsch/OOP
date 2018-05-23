@@ -1,0 +1,16 @@
+10
+0
+0
+0
+0
+0
+b- it is your turn
+112
+c- it is your turn (type something (it can be anything) then press enter)
+213
+d- it is your turn (type something (it can be anything) then press enter)
+014
+e- it is your turn
+000
+a- it is your turn (type something (it can be anything) then press enter)
+101

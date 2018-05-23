@@ -1,0 +1,7 @@
+00
+0
+0
+b- it is your turn
+000
+a- it is your turn (type something (it can be anything) then press enter)
+001

@@ -9,14 +9,30 @@ using namespace std;
 
 int main()
 {
+  int numberOfPlayers=5;
+  int numberOfDecks;
+  bool playerType[numberOfPlayers];
+  cin >> numberOfDecks;
+  string playerNames[5]={"a","b","c","d","e"};
+  for (int i=0; i < numberOfPlayers; i++)
+  {
+    cin >> playerType[i];
+  }
   card *deck=build_deck(numberOfDecks); //create a deck based on the number of decks selected
   int deckSize=52*numberOfDecks; //store the size of the deck
+  for (int i = 0; i < deckSize; i++)
+  {
+      cout << deck[i].get_suit_name() << deck[i].get_type() << ": ";
+  }
+  cout << endl;
   int numberOfHumans=0; //used for recording the number of human players (number of computer players is the difference between the number of players and the number of human players)
   for (int i=0;i<numberOfPlayers;i++)
   {
+    cout << playerType[i] << endl;
     if (playerType[i]) //check to see if the current player is a human player
     {
       numberOfHumans++; //increase the number of human players
+      cout << numberOfHumans << endl;
     }
   }
   human_player **humanPlayers=new human_player*[numberOfHumans]; //initialise class array for all human players

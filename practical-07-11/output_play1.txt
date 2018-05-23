@@ -1,0 +1,7 @@
+10
+0
+1
+0
+1
+0
+break due to blackjack
