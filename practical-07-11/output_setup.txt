@@ -1,0 +1,19 @@
+Enter the number of players (must be two or more players, if a number is entered first in a combination of numbers and letters the first number will be used)
+That is not a proper number. Please enter a number
+There must be at least two players. Please enter a number that is two or more
+There are 5 players
+Enter the number of decks (min. of 2 decks for 5 players, if a number is entered first in a combination of numbers and letters the first number will be used)
+That is not a proper number. Please enter a number
+That is too few decks. Please enter a suitable number of decks (min. of 2 decks)
+There are 6 decks
+Enter a name for player 1
+What kind of player is player 1 (c=computer player, h=human player)
+That is not a player type. Enter a valid player type (c=computer player, h=human player)
+Enter a name for player 2
+What kind of player is player 2 (c=computer player, h=human player)
+Enter a name for player 3
+What kind of player is player 3 (c=computer player, h=human player)
+Enter a name for player 4
+What kind of player is player 4 (c=computer player, h=human player)
+Enter a name for player 5
+What kind of player is player 5 (c=computer player, h=human player)

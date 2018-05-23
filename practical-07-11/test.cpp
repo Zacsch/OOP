@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "comp_player.h"
 #include "human_player.h"
 #include "card.h"
@@ -12,43 +11,41 @@
 #include "game_control.cpp"
 
 using namespace std;
-//extern card* build_deck(int numberOfDecks);
 
-int main() //code snippet for testing code
+int main()
 {
-  clear_terminal();
+  clear_terminal(); //run function to clear the terminal
   int numberOfPlayers=set_number_of_players();
   int numberOfDecks=set_number_of_decks(numberOfPlayers);
-  string playerNames[numberOfPlayers];
-  bool playerType[numberOfPlayers];
+  string playerNames[numberOfPlayers]; //array used to store the names of players
+  bool playerType[numberOfPlayers]; //array used to store the type of each player. Also used for referencing player number
   for (int i=0;i<numberOfPlayers;i++)
   {
-    playerNames[i]=set_player_name(i+1);
-    playerType[i]=set_player_type(i+1);
-    cout << playerNames[i] << i << endl;
+    playerNames[i]=set_player_name(i+1); //set each players name and store to an array
+    playerType[i]=set_player_type(i+1); //set each players type and store to an array
   }
-  card *deck=build_deck(numberOfDecks);
-  int deckSize=52*numberOfDecks;
-  int numberOfHumans=0;
+  card *deck=build_deck(numberOfDecks); //create a deck based on the number of decks selected
+  int deckSize=52*numberOfDecks; //store the size of the deck
+  int numberOfHumans=0; //used for recording the number of human players (number of computer players is the difference between the number of players and the number of human players)
   for (int i=0;i<numberOfPlayers;i++)
   {
-    if (playerType[i])
+    if (playerType[i]) //check to see if the current player is a human player
     {
-      numberOfHumans++;
+      numberOfHumans++; //increase the number of human players
     }
   }
-  human_player **humanPlayers=new human_player*[numberOfHumans];
+  human_player **humanPlayers=new human_player*[numberOfHumans]; //initialise class array for all human players
   int currentHumanToSet=0; //used to determine which human object needs to be set next
-  comp_player **compPlayers=new comp_player*[numberOfPlayers-numberOfHumans];
-  int currentCompToSet=0; //same as that for human
-  for (int i=0;i<numberOfPlayers;i++)
+  comp_player **compPlayers=new comp_player*[numberOfPlayers-numberOfHumans]; //initialise class array for all computer players
+  int currentCompToSet=0; //same as the other variable baove but for the computer player
+  for (int i=0;i<numberOfPlayers;i++) //for loop to create all the player objects
   {
     if (playerType[i]) //shows true if the player type is human_player
     {
-      humanPlayers[currentHumanToSet]=new human_player(i,playerNames[i],numberOfDecks,deck);
-      currentHumanToSet++;
+      humanPlayers[currentHumanToSet]=new human_player(i,playerNames[i],numberOfDecks,deck); //create a human player object and store into class array
+      currentHumanToSet++; //increment to move onto next position to create a human player object
     }
-    else
+    else //show false for a computer player, same as for true but with computer players instead
     {
       compPlayers[currentCompToSet]=new comp_player(i,playerNames[i],numberOfDecks,deck);
       currentCompToSet++;
@@ -62,69 +59,68 @@ int main() //code snippet for testing code
   int currentPlayer=1; //get the current player number, initially it is player 2
   if ((playerType[0])&&(numberOfPlayers!=2))
   {
-    humanPlayerTurn++;
+    humanPlayerTurn++; //if the first player inputted was human, then the second human player will be the first human player to have their turn
   }
   else if (numberOfPlayers!=2)
   {
-    compPlayerTurn++;
+    compPlayerTurn++; //if the first player inputted was a computer player then the second computer player will be the first computer player to have their turn
   }
+  clear_terminal();
   string turnStart; //used later for holding play until an input is placed
   while (true)
   {
     cout << currentPlayer << endl;
     bool blackjack=0; //check for instant win condition
     int handScore; //return score of hand
-    for (int i=0;i<numberOfHumans;i++)
+    for (int i=0;i<numberOfHumans;i++) //for loop to check the hand of each human player
     {
-        bool win=humanPlayers[i]->winner_winner_chicken_dinner();
-        if (win)
+        bool win=humanPlayers[i]->winner_winner_chicken_dinner(); //run function to check if someone has 21 and display a message if they do
+        if (win) //does someone have a hand value of 21
         {
-          blackjack=1;
-          sleep(2);
+          blackjack=1; //set condition used to skip next do loop
         }
     }
-    for (int i=0;i<(numberOfPlayers-numberOfHumans);i++)
+    for (int i=0;i<(numberOfPlayers-numberOfHumans);i++) //same as for loop above but for computer players
     {
         bool win=compPlayers[i]->winner_winner_chicken_dinner();
         if (win)
         {
           blackjack=1;
-          sleep(2);
         }
     }
     do
     {
       clear_terminal();
-      if (blackjack)
+      if (blackjack) //did someone get 21 on their starting hand
       {
-        break;
+        break; //skip to the end of the loop if someone has blackjack
       }
       if (playerType[currentPlayer]) //is the next player a human player?
       {
-        cout << playerNames[currentPlayer] << "- it is your turn (type something then press enter)" << endl;
+        cout << playerNames[currentPlayer] << "- it is your turn (type something (it can be anything) then press enter)" << endl;
         cin >> turnStart; //random variable to hold play until an input is placed
-        deckSize-=humanPlayers[humanPlayerTurn]->action(numberOfDecks, deck);
-        humanPlayerTurn++;
+        deckSize-=humanPlayers[humanPlayerTurn]->action(numberOfDecks, deck); //perform the action of the human player having a turn, change the deck size based on the result of the function
+        humanPlayerTurn++; //increase to call for the next human player when their turn comes around
         if (humanPlayerTurn==numberOfHumans)
         {
-          humanPlayerTurn=0;
+          humanPlayerTurn=0; //reset to 0 if the last human player was the last one inputted
         }
       }
       else //if the player is not human then the player must be computer
       {
-        cout << playerNames[currentPlayer] << "- it is your turn" << endl;
-        sleep(2);
-        deckSize-=compPlayers[compPlayerTurn]->action(numberOfDecks, deck);
-        compPlayerTurn++;
+        cout << playerNames[currentPlayer] << "- it is your turn" << endl; //display who's turn it is
+        sleep(2); //wait for 2 seconds
+        deckSize-=compPlayers[compPlayerTurn]->action(numberOfDecks, deck); //perform the action of the computer player having a turn, change the deck size based on the result of the function
+        compPlayerTurn++; //increase to call for the next computer player when their turn comes around
         if (compPlayerTurn==numberOfPlayers-numberOfHumans)
         {
-          compPlayerTurn=0;
+          compPlayerTurn=0; //reset to 0 if the last computer player was the last one inputted
         }
       }
-      currentPlayer++;
+      currentPlayer++; //increment to call the next player
       if (currentPlayer==numberOfPlayers)
       {
-        currentPlayer=0;
+        currentPlayer=0; //reset to 0 if current player was the last player just before
       }
     } while(currentPlayer!=firstPlayer);
     clear_terminal();
@@ -145,26 +141,26 @@ int main() //code snippet for testing code
       card *deck=build_deck(numberOfDecks);
       int deckSize=52*numberOfDecks;
     }
-    firstPlayer++;
+    firstPlayer++; //start next round with the player who went second
     dealer=firstPlayer-1;
-    if (firstPlayer==numberOfPlayers)
+    if (firstPlayer==numberOfPlayers) //used to reset the value if the player who just went first was the last player inputted
     {
       firstPlayer=0;
     }
-    currentPlayer=firstPlayer;
-    humanPlayerTurn=0;
-    compPlayerTurn=0;
-    for (int i=0;i<firstPlayer;i++)
+    currentPlayer=firstPlayer; //set the current player to start with the first player
+    humanPlayerTurn=0; //reset to 0 to allow for easier resetting
+    compPlayerTurn=0; //reset to 0 to allow for easier resetting
+    for (int i=0;i<firstPlayer;i++) //use for loop to determine which human player and computer player goes before everyone else by checking playerType
     {
-      if(playerType[i])
+      if(playerType[i]) //check to see if the player is human
       {
-        humanPlayerTurn++;
-        if (humanPlayerTurn==numberOfHumans)
+        humanPlayerTurn++; //change to the next human player
+        if (humanPlayerTurn==numberOfHumans) //if humanPlayerTurn is equal to the number of players
         {
-          humanPlayerTurn=0;
+          humanPlayerTurn=0; //change to the first human player inputted
         }
       }
-      else
+      else //the player must be a computer player otherwise, runs exactly as tif the if statement was true but with computer players instead
       {
         compPlayerTurn++;
         if (compPlayerTurn==numberOfPlayers-numberOfHumans)
@@ -173,14 +169,14 @@ int main() //code snippet for testing code
         }
       }
     }
-    for (int i=0;i<numberOfHumans;i++)
+    for (int i=0;i<numberOfHumans;i++) //for every human player, reset their hand
     {
         humanPlayers[i]->reset_hand(numberOfDecks,deck);
     }
-    for (int i=0;i<(numberOfPlayers-numberOfHumans);i++)
+    for (int i=0;i<(numberOfPlayers-numberOfHumans);i++) //same as previous loop but with computer players
     {
         compPlayers[i]->reset_hand(numberOfDecks,deck);
     }
-    deckSize-=2*numberOfPlayers;
+    deckSize-=2*numberOfPlayers; //change the deck size based on the number of hands reset
   }
 }

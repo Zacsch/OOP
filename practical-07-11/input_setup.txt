@@ -1,0 +1,17 @@
+tux
+0
+5
+p
+1
+6
+sdfghjkl
+k
+c
+pill
+h
+king
+c
+lock
+c
+gunk
+h

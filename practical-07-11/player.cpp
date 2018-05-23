@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 #include "player.h"
 #include "card.h"
 #include "deck.h"
@@ -81,6 +82,7 @@ bool player::winner_winner_chicken_dinner()
   {
     cout << "Winner Winner Chicken Dinnner!" << endl;
     cout << playerName << " has 21" << endl;
+    sleep(2); //pause to allow fo rthe message to be read
     win=1;
   }
   return win;

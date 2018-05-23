@@ -22,6 +22,7 @@ class player
 		void winner(int dealer); //determine and show the winner
 		int score(); //returns the value of the hand
 		bool player_type(bool playerType); //return player type
+		string get_name(); //return the player name
 		int player_number(); //return the player number
 		void reset_hand(int numberOfDecks, card* deck); //reset the hand
 
@@ -32,7 +33,6 @@ class player
 
 		int playerNumber;
 		string playerName;
-		bool playerType;
 		int handSize;
 
 		player *players;

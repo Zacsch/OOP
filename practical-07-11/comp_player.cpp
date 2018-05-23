@@ -12,7 +12,7 @@ comp_player::comp_player()
 
 comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer, int numberOfDecks, card* deck):player(numberOfThePlayer,nameOfPlayer,numberOfDecks,deck)
 {
-  playerType=1;
+  
 }
 
 int comp_player::action(int numberOfDecks, card* deck)

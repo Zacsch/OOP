@@ -21,7 +21,7 @@ int set_number_of_players()
     if(incorrectNumberOfPlayers)
     {
       cin.clear(); //clear the stream
-      cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
+      cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer, condition is needed to fully clear the buffer (else cin runs for every character typed)
       cout << "That is not a proper number. Please enter a number" << endl;
       numberOfPlayers=10000; //arbitrary value to stop next condition from occurring
     }
@@ -39,9 +39,9 @@ int set_number_of_players()
   return numberOfPlayers;
 }
 
-int set_number_of_decks(int numberOfPlayers)
+int set_number_of_decks(int numberOfPlayers) //the structure of this function is mostly similar to set_number_of_players, with the biggest difference being some coondition changes
 {
-  int numberOfDecks;
+  int numberOfDecks; //the value to return
   bool incorrectNumberOfDecks; //used to see if there is a valid number of decks
   cout << "Enter the number of decks (min. of " << 1+numberOfPlayers/4 << " decks for " << numberOfPlayers << " players, if a number is entered first in a combination of numbers and letters the first number will be used)" << endl;
   do
@@ -59,7 +59,7 @@ int set_number_of_decks(int numberOfPlayers)
     {
       cin.clear(); //clear the stream
       cin.ignore(); //clear the buffer
-      cout << "That is too few decks. Please enter a suitable number of decks (min. of " << numberOfPlayers/4 << " decks)" << endl;
+      cout << "That is too few decks. Please enter a suitable number of decks (min. of " << 1+numberOfPlayers/4 << " decks)" << endl;
       incorrectNumberOfDecks=1; //set condition to continue running the loop until a suitable number of decks is entered
     }
   } while(incorrectNumberOfDecks);
@@ -71,7 +71,7 @@ int set_number_of_decks(int numberOfPlayers)
 
 string set_player_name(int playerNumber)
 {
-  string name;
+  string name; //name to return
   cout << "Enter a name for player " << playerNumber << endl; //ask the user for a player name
   cin >> name; //set the player name
   return name;
@@ -79,9 +79,9 @@ string set_player_name(int playerNumber)
 
 bool set_player_type(int playerNumber)
 {
-  int known=0;
-  string input;
-  int type;
+  bool known=0; //value used to run a while loop while the player type is unknown
+  string input; //stores the input from the keyboard
+  bool type; //used to return the player type. Only two outcomes are possible
   cout << "What kind of player is player " << playerNumber << " (c=computer player, h=human player)" << endl;
   while (!known) //check to see if the player type is known
   {
@@ -106,17 +106,17 @@ bool set_player_type(int playerNumber)
 
 int end_of_round_decision()
 {
-  string input;
+  string input; //stores the input from the keyboard
   int decision=0; //return the decision the players make in numerical form, with 0 representing an unmade choice
   cout << "What do you want to do now?" << endl;
-  cout << "Start new round (c)" << endl;
-  cout << "Restart the game (r)" << endl;
+  cout << "Start new round with current deck (c)" << endl;
+  cout << "Start new round with new deck (r)" << endl;
   cout << "End the game (x)" << endl;
   do
   {
-    cout << "Enter your choice" << endl;
-    cin >> input;
-    if (input=="c")
+    cout << "Enter your choice (press the key for the desired choice then press enter)" << endl;
+    cin >> input; //collect the input from the keyboarrd
+    if (input=="c") //what was the user input?
     {
       decision=1; //continue
     }
@@ -133,7 +133,7 @@ int end_of_round_decision()
       cout << "That is not a valid choice" << endl;
     }
   } while(!decision); //keep running until a decision has been made
-  return decision;
+  return decision; //return the decision in numerical
 }
 
 void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayers[], string playerNames[], bool playerType[], int numberOfPlayers)
@@ -185,7 +185,7 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   }
 }
 
-void end_round(human_player *humanPlayers[], comp_player *compPlayers[], string playerNames[], bool playerType[], int numberOfPlayers)
+int end_round(human_player *humanPlayers[], comp_player *compPlayers[], string playerNames[], bool playerType[], int numberOfPlayers)
 {
   int humanPlayerTurn=0;
   int compPlayerTurn=0;

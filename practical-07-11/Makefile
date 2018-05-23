@@ -7,3 +7,7 @@ compile:
 
 install curses:
 	sudo apt-get install libncurses5-dev
+
+testing:
+		g++ first_test.cpp -o test
+		./test < input_setup.txt | diff - output_setup.txt
