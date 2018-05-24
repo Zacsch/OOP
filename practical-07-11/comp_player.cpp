@@ -17,7 +17,7 @@ comp_player::comp_player(int numberOfThePlayer, string nameOfPlayer, int numberO
 
 int comp_player::action(int numberOfDecks, card* deck)
 {
-  show();  //use only for testing
+  //show();  //use only for testing
   int cardsDrawn=0;
   int handScore = score();
   while (handScore<17)
@@ -26,7 +26,7 @@ int comp_player::action(int numberOfDecks, card* deck)
     handSize++;
     cardsDrawn++;
     handScore = score();
-    show();  //use only for testing
+    //show();  //use only for testing
     sleep(1);
   }
   if (handScore>21)

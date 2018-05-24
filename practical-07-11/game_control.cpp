@@ -72,8 +72,12 @@ int set_number_of_decks(int numberOfPlayers) //the structure of this function is
 string set_player_name(int playerNumber)
 {
   string name; //name to return
-  cout << "Enter a name for player " << playerNumber << endl; //ask the user for a player name
-  cin >> name; //set the player name
+  string input;
+  cout << "Enter a name for player " << playerNumber << " (anything after a space will be ignored)" << endl; //ask the user for a player name
+  cin >> input; //set the player name
+  name=input;
+  cin.clear(); //clear the stream
+  cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
   return name;
 }
 
@@ -132,6 +136,8 @@ int end_of_round_decision()
     {
       cout << "That is not a valid choice" << endl;
     }
+    cin.clear(); //clear the stream
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
   } while(!decision); //keep running until a decision has been made
   return decision; //return the decision in numerical
 }
@@ -177,12 +183,12 @@ void winner(int bestScore, human_player *humanPlayers[], comp_player *compPlayer
   }
   else //multiple people get the best score
   {
-    cout << "There is a draw between:\n";
+    cout << "\nThere is a draw between:\n";
     for (int i=0;i<numberOfWinners;i++) //loop to print out each player
     {
       cout << winnerNames[i] << endl; //print each name
     }
-    cout << endl << endl;
+    cout << endl;
   }
 }
 

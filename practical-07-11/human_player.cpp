@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "human_player.h"
 #include "stdio.h"
 
@@ -17,6 +18,8 @@ human_player::human_player(int numberOfThePlayer, string nameOfPlayer, int numbe
 
 int human_player::action(int numberOfDecks, card* deck) //determine the action that is taken by the person
 {
+	cin.clear(); //clear the stream
+	cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
 	int cardsDrawn=0; //record the number of cards the player has taken from the deck
 	string input; //used for receiving the user input
 	int handScore=score();
@@ -49,10 +52,14 @@ int human_player::action(int numberOfDecks, card* deck) //determine the action t
 		{
 			cout << "that is not a valid option!" << endl;
 		}
+		cin.clear(); //clear the stream
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
 	}
 	string endTurn;
   cout << "type something (it can be anything) then press enter to continue" << endl;
   cin >> endTurn;
+	cin.clear(); //clear the stream
+	cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear the buffer
 	return cardsDrawn;
 }
 
